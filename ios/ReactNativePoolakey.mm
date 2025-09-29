@@ -3,17 +3,16 @@
 @implementation ReactNativePoolakey
 RCT_EXPORT_MODULE()
 
-// Example method
-// See // https://reactnative.dev/docs/native-modules-ios
-RCT_EXPORT_METHOD(multiply:(double)a
-                  b:(double)b
-                  resolve:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject)
-{
+- (NSNumber *)multiply:(double)a b:(double)b {
     NSNumber *result = @(a * b);
 
-    resolve(result);
+    return result;
 }
 
+- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
+    (const facebook::react::ObjCTurboModule::InitParams &)params
+{
+    return std::make_shared<facebook::react::NativeReactNativePoolakeySpecJSI>(params);
+}
 
 @end

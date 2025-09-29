@@ -1,17 +1,33 @@
-package ir.cafebazaar.poolakey.rn
+package com.cafebazaar.reactnativepoolakey
 
-import com.facebook.react.ReactPackage
+import com.facebook.react.BaseReactPackage
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.uimanager.ViewManager
+import com.facebook.react.module.model.ReactModuleInfo
+import com.facebook.react.module.model.ReactModuleInfoProvider
+import java.util.HashMap
 
-
-class ReactNativePoolakeyPackage : ReactPackage {
-  override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
-    return listOf(ReactNativePoolakeyModule(reactContext))
+class ReactNativePoolakeyPackage : BaseReactPackage() {
+  override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
+    return if (name == ReactNativePoolakeyModule.NAME) {
+      ReactNativePoolakeyModule(reactContext)
+    } else {
+      null
+    }
   }
 
-  override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
-    return emptyList()
+  override fun getReactModuleInfoProvider(): ReactModuleInfoProvider {
+    return ReactModuleInfoProvider {
+      val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
+      moduleInfos[ReactNativePoolakeyModule.NAME] = ReactModuleInfo(
+        ReactNativePoolakeyModule.NAME,
+        ReactNativePoolakeyModule.NAME,
+        false,  // canOverrideExistingModule
+        false,  // needsEagerInit
+        false,  // isCxxModule
+        true // isTurboModule
+      )
+      moduleInfos
+    }
   }
 }

@@ -1,12 +1,5 @@
-
-#ifdef RCT_NEW_ARCH_ENABLED
-#import "RNReactNativePoolakeySpec.h"
+#import <ReactNativePoolakeySpec/ReactNativePoolakeySpec.h>
 
 @interface ReactNativePoolakey : NSObject <NativeReactNativePoolakeySpec>
-#else
-#import <React/RCTBridgeModule.h>
-
-@interface ReactNativePoolakey : NSObject <RCTBridgeModule>
-#endif
 
 @end
