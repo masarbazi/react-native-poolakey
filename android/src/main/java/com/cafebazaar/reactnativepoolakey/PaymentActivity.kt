@@ -3,7 +3,6 @@ package com.cafebazaar.reactnativepoolakey
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import com.facebook.react.bridge.Promise
 import ir.cafebazaar.poolakey.Payment
@@ -16,7 +15,6 @@ class PaymentActivity : ComponentActivity() {
 
     val callback: PurchaseCallback.() -> Unit = {
       purchaseSucceed { purchaseEntity ->
-        Log.i("PurchaseCallback", "resolve with: $purchaseEntity")
         promise.resolve(purchaseEntity)
         finish()
       }
@@ -42,13 +40,17 @@ class PaymentActivity : ComponentActivity() {
 
   private fun purchaseProduct(callback: PurchaseCallback.() -> Unit) {
     payment.purchaseProduct(
-      activityResultRegistry, PurchaseRequest(productId, payload, dynamicPriceToken), callback
+            activityResultRegistry,
+            PurchaseRequest(productId, payload, dynamicPriceToken),
+            callback
     )
   }
 
   private fun subscribeProduct(callback: PurchaseCallback.() -> Unit) {
     payment.subscribeProduct(
-      activityResultRegistry, PurchaseRequest(productId, payload, dynamicPriceToken), callback
+            activityResultRegistry,
+            PurchaseRequest(productId, payload, dynamicPriceToken),
+            callback
     )
   }
 
@@ -63,13 +65,13 @@ class PaymentActivity : ComponentActivity() {
 
     @JvmStatic
     fun start(
-      activity: Activity,
-      command: Command,
-      productId: String,
-      payment: Payment,
-      promise: Promise,
-      payload: String?,
-      dynamicPriceToken: String?
+            activity: Activity,
+            command: Command,
+            productId: String,
+            payment: Payment,
+            promise: Promise,
+            payload: String?,
+            dynamicPriceToken: String?
     ) {
       PaymentActivity.command = command
       PaymentActivity.productId = productId
@@ -83,6 +85,7 @@ class PaymentActivity : ComponentActivity() {
   }
 
   enum class Command {
-    Purchase, Subscribe
+    Purchase,
+    Subscribe
   }
 }
