@@ -15,7 +15,7 @@ class PaymentActivity : ComponentActivity() {
 
     val callback: PurchaseCallback.() -> Unit = {
       purchaseSucceed { purchaseEntity ->
-        promise.resolve(purchaseEntity)
+        promise.resolve(Util.getWritableMapOf(purchaseEntity))
         finish()
       }
       purchaseCanceled {

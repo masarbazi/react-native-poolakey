@@ -76,4 +76,5 @@ dependencies {
   implementation "com.facebook.react:react-android"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   implementation "com.github.cafebazaar.Poolakey:poolakey:2.2.0"
+  implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }

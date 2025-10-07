@@ -9,11 +9,21 @@ export default function App() {
     console.log('result', result);
   };
 
+  const purchaseProduct = async () => {
+    try {
+      const result = await bazaar.purchaseProduct('g10');
+      console.log('purchase result', result);
+    } catch (error) {
+      console.error('purchase error', (error as Error).message);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text>Result: TODO</Text>
       {/* Test connection */}
-      <Button title="Purchase" onPress={getPurchased} />
+      <Button title="Get Purchased" onPress={getPurchased} />
+      <Button title="Purchase" onPress={purchaseProduct} />
     </View>
   );
 }

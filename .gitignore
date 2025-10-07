@@ -9,6 +9,9 @@
 .vscode/
 jsconfig.json
 
+# library local builds
+/*.tgz
+
 # Xcode
 #
 build/

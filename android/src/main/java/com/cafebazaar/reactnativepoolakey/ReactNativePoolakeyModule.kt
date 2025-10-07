@@ -161,7 +161,8 @@ class ReactNativePoolakeyModule(private val reactContext: ReactApplicationContex
     runIfPaymentInitialized(promise) {
       payment.getPurchasedProducts {
         queryFailed {
-          promise?.reject(it) }
+          promise?.reject(it)
+        }
         querySucceed {
           promise?.resolve(Arguments.fromList(it))
         }
@@ -174,7 +175,7 @@ class ReactNativePoolakeyModule(private val reactContext: ReactApplicationContex
       payment.getSubscribedProducts {
         queryFailed { promise?.reject(it) }
         querySucceed {
-          promise?.resolve(it)
+          promise?.resolve(Util.getWritableMapOf(it))
         }
       }
     }
@@ -193,7 +194,7 @@ class ReactNativePoolakeyModule(private val reactContext: ReactApplicationContex
           if (product == null) {
             promise?.reject(code = "notFound", "Product with id $productId not found")
           } else {
-            promise?.resolve(product)
+            promise?.resolve(Util.getWritableMapOf(product))
           }
         }
       }
@@ -212,7 +213,7 @@ class ReactNativePoolakeyModule(private val reactContext: ReactApplicationContex
           if (product == null) {
             promise?.reject(code = "notFound", "Product with id $productId not found")
           } else {
-            promise?.resolve(product.originalJson)
+            promise?.resolve(Util.getWritableMapOf(product))
           }
         }
       }
@@ -229,7 +230,7 @@ class ReactNativePoolakeyModule(private val reactContext: ReactApplicationContex
       payment.getInAppSkuDetails(productIdsList) {
         getSkuDetailsFailed { promise?.reject(it) }
         getSkuDetailsSucceed {
-          promise?.resolve(it)
+          promise?.resolve(Util.getWritableMapOf(it))
         }
       }
     }
@@ -245,7 +246,7 @@ class ReactNativePoolakeyModule(private val reactContext: ReactApplicationContex
       payment.getSubscriptionSkuDetails(productIdsList) {
         getSkuDetailsFailed { promise?.reject(it) }
         getSkuDetailsSucceed {
-          promise?.resolve(it)
+          promise?.resolve(Util.getWritableMapOf(it))
         }
       }
     }
