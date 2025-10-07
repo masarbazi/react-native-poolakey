@@ -1,9 +1,31 @@
 {
   "name": "@cafebazaar/react-native-poolakey",
-  "version": "0.0.0-local.2",
-  "description": "Cafe Bazaar IAB ",
+  "version": "4.0.0",
+  "description": "ReactNative implementation of CafeBazaar's in-app payment SDK",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
+  "contributors": [
+    {
+      "name": "Amirhossein Mousavi",
+      "email": "mousavisabet@gmail.com",
+      "url": "https://github.com/ahmousavi"
+    },
+    {
+      "name": "Mohammad Amin Sarbazi",
+      "email": "ma.sarbazi.a@gmail.com",
+      "url": "https://github.com/masarbazi"
+    },
+    {
+      "name": "Arash Shakery",
+      "email": "arash.shakery@gmail.com",
+      "url": "https://github.com/arash16"
+    },
+    {
+      "name": "Shayan Pourvatan",
+      "email": "shayanpourvatan@gmail.com",
+      "url": "https://github.com/shayanpourvatan"
+    }
+  ],
   "exports": {
     ".": {
       "source": "./src/index.tsx",
